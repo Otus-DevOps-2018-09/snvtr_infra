@@ -28,7 +28,7 @@ resource "google_compute_instance" "app" {
     type  = "ssh"
     user  = "user"
     agent = false
-    private_key = "${file("~/.ssh/id_rsa")}"
+    private_key = "${file("/home/user/.ssh/id_rsa")}"
   }
   provisioner "file" {
     source      = "files/puma.service"
