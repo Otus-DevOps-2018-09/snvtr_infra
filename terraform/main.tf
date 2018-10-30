@@ -28,7 +28,7 @@ resource "google_compute_instance" "app" {
     type  = "ssh"
     user  = "user"
     agent = false
-    private_key = "${file("/home/user/.ssh/id_rsa")}"
+    private_key = "${file("~/.ssh/appuser")}"
   }
   provisioner "file" {
     source      = "files/puma.service"
@@ -48,7 +48,7 @@ resource "google_compute_firewall" "firewall_puma" {
     protocol = "tcp"
     ports    = ["9292"]
   }
-  # кому разрешаем ходить
+  # кому разрешаем ходить 
   source_ranges = ["0.0.0.0/0"]
   # на какой тэг вешается правило
   target_tags = ["reddit-app-terraform"]
