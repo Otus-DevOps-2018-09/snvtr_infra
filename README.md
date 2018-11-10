@@ -18,6 +18,7 @@ Host 10.132.0.*
 bastion_IP = 35.210.249.208
 
 someinternalhost_IP = 10.132.0.3
+
 ---
 
 testapp_IP = 35.240.24.225 
