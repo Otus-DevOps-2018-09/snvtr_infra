@@ -1,39 +1,29 @@
-# статический ip
-resource "google_compute_address" "app_ip" {
-  name = "reddit-app-ip"
+provider "google" {
+  version = "1.4.0"
+  project = "${var.project}"
+  region  = "${var.region}"
 }
-
-# сама машина
 resource "google_compute_instance" "app" {
-  name          = "reddit-app"
+  name          = "reddit-app-terraform"
   machine_type  = "g1-small"
-  zone          = "${var.zone}"
+  zone          = "europe-west1-b"
   # определение загрузочного диска
   boot_disk {
     initialize_params {
-      image = "${var.app_disk_image}"
+      image = "${var.disk_image}"
     }
   }
-
   # определение сетевого интерфейса
   network_interface {
     # сеть, к которой присоединить данный интерфейс
     network = "default"
     # использовать ethemeral ip для доступа из интернет
-    access_config {
-      nat_ip = "${google_compute_address.app_ip.address}"
-    }
+    access_config {}
   }
-
-  # ключ для доступа снаружи
   metadata {
     ssh-keys = "user:${file(var.public_key_path)}"
   }
-
-  #
-  tags = ["reddit-app"]
-
-  # как подключаться провиженерам
+  tags = ["reddit-app-terraform"]
   connection {
     type  = "ssh"
     user  = "user"
@@ -41,25 +31,35 @@ resource "google_compute_instance" "app" {
     private_key = "${file("~/.ssh/appuser")}"
   }
   provisioner "file" {
-    source      = "../files/puma.service"
+    source      = "files/puma.service"
     destination = "/tmp/puma.service"
   }
   provisioner "remote-exec" {
-    script = "../files/deploy.sh"
+    script = "files/deploy.sh"
   }
 }
 
-# правило firewall для доступа к сервису
 resource "google_compute_firewall" "firewall_puma" {
-  name = "allow-puma-default"
-  network = "default"
-
+  name     = "allow-puma-default"
+  # Название сети для которой действует правило
+  network  = "default"
+  # Какой доступ разрешаем
   allow {
     protocol = "tcp"
-    ports = ["9292"]
+    ports    = ["9292"]
   }
-
+  # кому разрешаем ходить 
   source_ranges = ["0.0.0.0/0"]
-  target_tags = ["reddit-app"]
+  # на какой тэг вешается правило
+  target_tags = ["reddit-app-terraform"]
 }
 
+resource "google_compute_firewall" "firewall_ssh" {
+  name    = "default-allow-ssh"
+  network = "default"
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+  source_ranges = ["0.0.0.0/0"]
+}
