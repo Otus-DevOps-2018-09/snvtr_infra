@@ -1,0 +1,24 @@
+{
+    "builders": [
+        {
+            "type": "googlecompute",
+            "project_id": "{{ user `project_id` }}",
+            "image_name": "reddit-base-{{timestamp}}",
+            "image_family": "reddit-db-base",
+            "source_image_family": "{{ user `source_image_family` }}",
+            "image_description": "prebaked db for reddit-app",
+            "disk_size": "10",
+            "disk_type": "pd-standard",
+            "zone": "{{ user `zone` }}",
+            "ssh_username": "user",
+            "machine_type": "{{ user `machine_type` }}"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/install_mongodb.sh",
+            "execute_command": "sudo {{.Path}}"
+        }
+    ]
+}

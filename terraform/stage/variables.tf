@@ -23,7 +23,3 @@ variable app_disk_image {
 variable db_disk_image {
   description = "DB disk image"
 }
-
-variable disk_image {
-  description = "Disk image"
-}

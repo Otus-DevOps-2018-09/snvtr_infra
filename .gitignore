@@ -1,3 +1,5 @@
+*.tfvars
+.gitignore
 *.tfstate
 *.tfstate.*.backup
 *.tfstate.backup
