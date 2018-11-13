@@ -76,3 +76,4 @@ resource "google_compute_firewall" "firewall_nginx" {
   source_ranges = ["0.0.0.0/0"]
   target_tags = ["reddit-app"]
 }
+

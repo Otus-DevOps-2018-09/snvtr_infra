@@ -59,3 +59,4 @@ resource "google_compute_firewall" "firewall_mongo" {
   source_tags = ["reddit-app"]
 
 }
+

@@ -5,3 +5,4 @@ app_disk_image = "reddit-base-1540744012"
 db_disk_image = "reddit-base-1540751838"
 public_key_path = "/home/user/.ssh/id_rsa.pub"
 
+
