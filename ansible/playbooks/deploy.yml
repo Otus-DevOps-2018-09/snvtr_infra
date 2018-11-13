@@ -1,5 +1,5 @@
 ---
-- name: Deploy App 
+- name: Deploy App
   hosts: app
   become: true
   tasks:
@@ -17,5 +17,4 @@
   handlers:
   - name: reload puma
     systemd: name=puma state=restarted
-
 
