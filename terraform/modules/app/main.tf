@@ -63,3 +63,16 @@ resource "google_compute_firewall" "firewall_puma" {
   target_tags = ["reddit-app"]
 }
 
+# правило firewall для доступа к сервису nginx
+resource "google_compute_firewall" "firewall_nginx" {
+  name = "allow-nginx-default"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports = ["80"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags = ["reddit-app"]
+}
