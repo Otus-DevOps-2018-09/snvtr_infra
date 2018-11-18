@@ -1,0 +1,35 @@
+---
+# tasks file for db
+- name: Show info about the current environment
+  debug:
+    msg: "This host is using {{ env }} environment!"
+
+- name: Add repo key
+  apt_key:
+    id: EA312927
+    keyserver: keyserver.ubuntu.com
+  tags: install
+
+- name: Add mongo repo
+  apt_repository:
+    repo: deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse
+    state: present
+  tags: install  
+
+- name: apt update 
+  apt:
+    update_cache: yes
+  tags: install  
+
+- name: Install mongodb
+  apt:
+    name: mongodb
+    state: present
+  tags: install  
+
+- name: systemd enable mongodb
+  systemd:
+    name: mongodb
+    enabled: yes
+  tags: install
+    
