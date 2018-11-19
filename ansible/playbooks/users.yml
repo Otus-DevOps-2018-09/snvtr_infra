@@ -14,4 +14,3 @@
         groups: "{{ item.value.groups | default(omit) }}"
       with_dict: "{{ credentials.users }}"
 
-

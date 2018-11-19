@@ -17,7 +17,7 @@
     "provisioners": [
         {
             "type": "ansible",
-            "playbook_file": "../ansible/playbooks/site.yml",
+            "playbook_file": "ansible/playbooks/site.yml",
 	    "ansible_env_vars": ["ANSIBLE_ROLES_PATH=/home/user/Git11/snvtr_infra/ansible/roles"]
         }
     ]
