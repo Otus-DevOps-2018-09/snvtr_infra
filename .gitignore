@@ -3,3 +3,11 @@
 *.state.backup
 *.tfvars
 *.bak
+*.tfvars
+.gitignore
+*.tfstate
+*.tfstate.*.backup
+*.tfstate.backup
+*.tfvars
+.terraform/
+variables.json
