@@ -1,0 +1,26 @@
+---
+# tasks file for app
+- name: Show info about the current env
+  debug:
+    msg: "This host is using {{ env }} environment!"
+
+- name: Install python-apt
+  apt: name=python-apt state=installed
+
+- name: Add unit file for Puma
+  copy:
+    src: puma.service
+    dest: /etc/systemd/system/puma.service
+  notify: reload puma
+
+- name: Add config for DB connection
+  template:
+    src: db_config.j2
+    dest: /home/user/db_config
+    owner: user
+    group: user
+  notify: reload puma
+
+- name: enable puma
+  systemd: name=puma enabled=yes
+

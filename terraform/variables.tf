@@ -27,3 +27,4 @@ variable db_disk_image {
 variable disk_image {
   description = "Disk image"
 }
+

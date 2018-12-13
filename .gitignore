@@ -11,3 +11,6 @@
 *.tfvars
 .terraform/
 variables.json
+jdauphant.nginx
+vault.key
+

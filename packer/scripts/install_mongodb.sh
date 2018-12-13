@@ -11,3 +11,4 @@ sed -ir 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 systemctl start mongod
 systemctl enable mongod
 
+

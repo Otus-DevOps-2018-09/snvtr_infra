@@ -1,0 +1,6 @@
+---
+# Change the IP after terraform apply:
+db_host: 10.132.0.2
+#env: local
+
+
