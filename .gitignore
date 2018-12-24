@@ -1,3 +1,8 @@
+*.retry
+*.state
+*.state.backup
+*.tfvars
+*.bak
 *.tfvars
 .gitignore
 *.tfstate
@@ -13,3 +18,5 @@
 .pytest_cache
 variables.json
 __pycache__/
+jdauphant.nginx
+vault.key

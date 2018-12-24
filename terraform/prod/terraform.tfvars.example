@@ -3,3 +3,4 @@ region     = "europe-west1"
 disk_image = "reddit-base-1540188448"
 public_key_path = "~/.ssh/appuser.pub"
 private_key_path = "~/.ssh/appuser"
+
