@@ -1,0 +1,14 @@
+---
+# tasks file for db
+- name: Show info about the current environment
+  debug:
+    msg: "This host is using {{ env }} environment!"
+
+- name: Change mongo config file
+  template:
+    src: templates/mongodb.conf.j2
+    dest: /etc/mongodb.conf
+    mode: 0644
+  notify: restart mongodb
+  tags: config
+

@@ -63,7 +63,7 @@ resource "google_compute_firewall" "firewall_puma" {
   target_tags = ["reddit-app"]
 }
 
-# правило firewall для доступа к сервису nginx
+# правило firewall для доступа к reverse-proxy nginx 
 resource "google_compute_firewall" "firewall_nginx" {
   name = "allow-nginx-default"
   network = "default"

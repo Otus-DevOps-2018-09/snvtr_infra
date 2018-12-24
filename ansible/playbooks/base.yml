@@ -1,0 +1,10 @@
+---
+- name: Install ruby, bundler
+  hosts: all
+  become: true
+  gather_facts: False
+  tasks:
+  - name: Install from shell python, python-apt
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python python-apt)
+    changed_when: False
+

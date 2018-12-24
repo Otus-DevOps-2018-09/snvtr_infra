@@ -1,6 +1,6 @@
 ---
 - name: Install mongodb
-  hosts: all 
+  hosts: all
   become: true
   tasks:
   - name: Add repo key

@@ -10,7 +10,13 @@
 *.tfstate.backup
 *.tfvars
 .terraform/
+.vagrant/
+*.log
+*.pyc
+.molecule
+.cache
+.pytest_cache
 variables.json
+__pycache__/
 jdauphant.nginx
 vault.key
-
